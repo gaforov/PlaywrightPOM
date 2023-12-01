@@ -30,3 +30,7 @@ class LoginPage:
     def error_message_locator(self):
         return self._error_message
 
+    @property
+    def login_button(self):
+        return self._login_btn
+
