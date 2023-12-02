@@ -41,3 +41,10 @@ def test_login_no_password(setup_teardown) -> None:
 
     expected_fail_message = "Password is required"
     expect(login_page.error_message_locator).to_contain_text(expected_fail_message)
+
+
+def test_access_inventory_page_without_login(setup_teardown) -> None:
+    page = setup_teardown
+    page.goto("https://www.saucedemo.com/inventory.html")
+    login_page =LoginPage(page)
+    expect(login_page.error_message_locator).to_contain_text("You can only access '/inventory.html' when you are logged in.")
