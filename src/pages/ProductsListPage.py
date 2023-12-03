@@ -4,6 +4,7 @@ class ProductsListPage:
         self._products_header = page.locator("span.title")
         self._burger_menu_icon = page.locator("button#react-burger-menu-btn")
         self._logout_link = page.locator("a#logout_sidebar_link")
+        self._add_to_cart = page.locator("//div[text()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item_description']//button")
 
     @property
     def product_header(self):
@@ -22,3 +23,10 @@ class ProductsListPage:
         """Logout from the Sauce Demo page"""
         self.click_burger_menu_btn()
         self.click_logout()
+
+    def get_add_or_remove_cart_locator(self, product):
+        """This will return Add to cart OR Remove from the cart button"""
+        return self.page.locator("//div[text()='"+product+"']/ancestor::div[@class='inventory_item_description']//button")
+
+    def click_add_to_cart_or_remove(self, product):
+        self.get_add_or_remove_cart_locator(product).click()
