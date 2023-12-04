@@ -1,3 +1,6 @@
+from src.pages.CartPage import CartPage
+
+
 class ProductsListPage:
     def __init__(self, page):
         self.page = page
@@ -5,6 +8,7 @@ class ProductsListPage:
         self._burger_menu_icon = page.locator("button#react-burger-menu-btn")
         self._logout_link = page.locator("a#logout_sidebar_link")
         self._add_to_cart = page.locator("//div[text()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item_description']//button")
+        self._cart_icon = page.locator("a.shopping_cart_link")
 
     @property
     def product_header(self):
@@ -30,3 +34,10 @@ class ProductsListPage:
 
     def click_add_to_cart_or_remove(self, product):
         self.get_add_or_remove_cart_locator(product).click()
+        return self
+
+    def click_cart_icon(self):
+        self._cart_icon.click()
+        return CartPage(self.page)
+
+
